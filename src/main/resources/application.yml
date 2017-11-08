@@ -3,7 +3,7 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dbgirl
+    url: jdbc:mysql://192.168.2.79:3306/dbgirl
     username: root
     password: zhaozhengyun
   jpa:
@@ -13,7 +13,7 @@ spring:
   redis:
     database: 0
     host: 127.0.0.1
-    port: 6739
+    port: 6379
     password:
     pool:
       max-active: 8
