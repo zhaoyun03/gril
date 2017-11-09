@@ -1,17 +1,20 @@
 package com.vortex.gril.entrty;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * Description:女生实体
+ * Description:mysql 保存的女生实体
  * Created with IntelliJ IDEA.
  * @author: zzy
  * @date: 2017/10/26 0026 Version: V1.0.0
  */
 @Entity
-public class Girl {
+public class Girl implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue

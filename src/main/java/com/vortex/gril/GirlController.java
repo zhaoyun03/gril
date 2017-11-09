@@ -1,6 +1,5 @@
 package com.vortex.gril;
 
-import com.vortex.gril.dao.api.IGirlRepository;
 import com.vortex.gril.entrty.Girl;
 import com.vortex.gril.service.api.IGirlSelectService;
 import java.util.List;
@@ -24,8 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class GirlController {
 
     @Autowired
-    private IGirlRepository girlRepository;
-    @Autowired
     private IGirlSelectService girlSelectService;
 
     /**
@@ -34,7 +31,7 @@ public class GirlController {
      */
     @GetMapping(value = "/girls")
     public List<Girl> girlList() {
-        return girlRepository.findAll();
+        return girlSelectService.findAll();
     }
 
     /**
@@ -71,7 +68,7 @@ public class GirlController {
         girl.setAge(age);
         girl.setName(name);
         girl.setCupSize(cupSize);
-        return girlRepository.save(girl);
+        return girlSelectService.addGirl(girl);
     }
 
     /**
@@ -79,9 +76,9 @@ public class GirlController {
      * @param id
      * @return
      */
-    @GetMapping(value = "girls/selectById")
+    @GetMapping(value = "girls/selectById/{id}")
     public Girl girlFindOne(@PathVariable("id") Integer id){
-        return girlRepository.findOne(id);
+        return girlSelectService.findById(id);
     }
 
     /**
@@ -89,7 +86,7 @@ public class GirlController {
      * @param name
      * @return
      */
-    @GetMapping(value = "girls/name/")
+    @GetMapping(value = "girls/name/{name}")
     public List<Girl> girlFindByName(@PathVariable("name") String name){
         return girlSelectService.findByName(name);
     }
@@ -101,7 +98,7 @@ public class GirlController {
      * @param age
      * @return
      */
-    @PutMapping(value = "girls/girlUpdate")
+    @PutMapping(value = "girls/girlUpdate/{id}")
     public Girl girlUpdate(@PathVariable("id") Integer id, @RequestParam("cupSize") String cupSize,@RequestParam("age") Integer age,
                            @RequestParam("name") String name){
         Girl girl = new Girl();
@@ -109,7 +106,7 @@ public class GirlController {
         girl.setName(name);
         girl.setCupSize(cupSize);
         girl.setAge(age);
-        return girlRepository.save(girl);
+        return girlSelectService.updateGirl(girl);
     }
 
     /**
@@ -118,7 +115,7 @@ public class GirlController {
      */
     @DeleteMapping(value = "girls/delete/{id}")
     public void girlDelete(@PathVariable("id") Integer id){
-          girlRepository.delete(id);
+          girlSelectService.deleteGirl(id);
     }
 
     /**

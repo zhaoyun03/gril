@@ -14,6 +14,15 @@ import org.springframework.data.domain.Page;
 public interface IGirlSelectService {
 
     /**
+     * 查看所有女生
+     * @param
+     * @return
+     */
+    List<Girl> findAll();
+
+    Girl findById(Integer id);
+
+    /**
      * 通过年龄查询女孩
      * @param age
      * @return
@@ -58,4 +67,23 @@ public interface IGirlSelectService {
      * @return
      */
     List<Girl>findByNameAndAge(String name,Integer age);
+
+    /**
+     * 增加女生
+     * @return Girl
+     */
+    Girl addGirl(Girl girl);
+
+    /**
+     * 修改女生
+     * @param girl
+     * @return
+     */
+    Girl updateGirl(Girl girl);
+
+    /**
+     * 根据id删除一个女生
+     * @param id
+     */
+    void deleteGirl(Integer id);
 }
