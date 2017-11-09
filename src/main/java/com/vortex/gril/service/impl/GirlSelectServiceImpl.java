@@ -2,7 +2,6 @@ package com.vortex.gril.service.impl;
 
 
 import com.alibaba.fastjson.JSON;
-import com.vortex.common.service.impl.CentralCacheService;
 import com.vortex.common.util.StringUtils;
 import com.vortex.gril.dao.api.IGirlRepository;
 import com.vortex.gril.dao.api.JedisClient;
