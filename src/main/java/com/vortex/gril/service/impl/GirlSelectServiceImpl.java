@@ -2,7 +2,6 @@ package com.vortex.gril.service.impl;
 
 
 import com.alibaba.fastjson.JSON;
-import com.vortex.common.util.StringUtils;
 import com.vortex.gril.dao.api.IGirlRepository;
 import com.vortex.gril.dao.api.JedisClient;
 import com.vortex.gril.entrty.Girl;
@@ -36,8 +35,9 @@ public class GirlSelectServiceImpl implements IGirlSelectService {
     @Override
     public List<Girl> findAll() {
         try{
-            String cacheGirlList = jedisClient.get("cacheGirlList");//首先从jedis中获取缓存
-            if(!StringUtils.isBlank(cacheGirlList)) {//查看缓存是否存在
+            boolean result = jedisClient.exists("cacheGirlList");//首先从jedis中获取缓存
+            if(result) {//查看缓存是否存在
+                String cacheGirlList = jedisClient.get("cacheGirlList");
                 List<Girl> GirlList = JSON.parseArray(cacheGirlList, Girl.class);//如果存在，转换成list
                 return GirlList;//直接返回查询出的结果
             }
